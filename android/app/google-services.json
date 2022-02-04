@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "811236566733",
+    "project_id": "noor-moden",
+    "storage_bucket": "noor-moden.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:811236566733:android:6ed75163a81de019bdab84",
+        "android_client_info": {
+          "package_name": "com.example.auth_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "811236566733-kaf5vs1bgl821j4s0ne6j6nkprs2kst7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.auth_project",
+            "certificate_hash": "b2869646207054b07b7c44aff45afb316d7239c5"
+          }
+        },
+        {
+          "client_id": "811236566733-gm69aiht3jbghvb03qpef0n73fajph0b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFgtzsM00P_SQ1S96E9E-6vhRqoOm-PvY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "811236566733-gm69aiht3jbghvb03qpef0n73fajph0b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
