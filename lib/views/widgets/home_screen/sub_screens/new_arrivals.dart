@@ -36,7 +36,7 @@ class _TypeProductsState extends State<TypeProducts> {
           ),
           SizedBox(height: 20.0,),
           Container(
-            height: width>800?610:width>600?850:650,
+            height: width>800?610:width>600?850:740,
             width: double.infinity,
             child: GridView.builder(
               scrollDirection: Axis.horizontal,
@@ -45,7 +45,7 @@ class _TypeProductsState extends State<TypeProducts> {
                 return Container(
                   margin: EdgeInsets.only(left: 5.0),
                   child: ProductCard(
-                    height: width>800?600:width>600?400:300,
+                    height: width>800?600:width>600?320:250,
                   ),
                   // child: Card(color: Colors.green,),
                 );
@@ -55,7 +55,7 @@ class _TypeProductsState extends State<TypeProducts> {
               gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: width>800?1:2,
                 mainAxisSpacing: 5.0,
-                mainAxisExtent: width>800?width*0.24:width*0.48,
+                mainAxisExtent: width>800?width*0.24:width*0.49,
 
               ),
 

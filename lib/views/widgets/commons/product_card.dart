@@ -51,7 +51,7 @@ class ProductCardState extends State<ProductCard> {
                 image: DecorationImage(image: AssetImage(
                   bgImg[selectedColor],
                 ),
-                    fit: BoxFit.fill)
+                    fit: BoxFit.cover)
             ),
             child:    Column(
               children: [
