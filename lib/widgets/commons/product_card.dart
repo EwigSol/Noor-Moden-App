@@ -21,6 +21,7 @@ class ProductCardState extends State<ProductCard> {
   Widget singleItem(List<String> bgImg,String headingText,String normalText, int colorIndex,double height){
     return  OnHover(
       val: -8.0,
+      isProduct: true,
       builder: (ishover) {
         return Card(
           elevation: ishover?6.0:3.0,
@@ -28,19 +29,9 @@ class ProductCardState extends State<ProductCard> {
             height: height,
             padding: EdgeInsets.all(5),
             alignment: Alignment.center,
-            // margin: EdgeInsets.only(left: MediaQuery.of(context).size.width*0.07,right: MediaQuery.of(context).size.width*0.04,),
-           // height: MediaQuery.of(context).size.height*0.86,
-           //  width: MediaQuery.of(context).size.width*0.23,
+
             decoration: const BoxDecoration(
                 color: Colors.white,
-                //  borderRadius: BorderRadius.circular(20),
-                // boxShadow: [
-                //   BoxShadow(
-                //       color: Colors.grey,
-                //       blurRadius: 4,
-                //       offset: Offset(0, 4)
-                //   )
-                // ]
             ),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,

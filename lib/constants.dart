@@ -16,6 +16,39 @@ List<String> titles=[
 ];
 
 
+List<String> shops=[
+  "ACCOUNT",
+  "HOME",
+  "NEW ARRIVALS",
+  "EVENINGDRESSES",
+  "COCKTAILDRESSES",
+  "WEDDING",
+  "BIG SIZES",
+  "ACCESSOIRES",
+  "SALE %"
+];
+
+List<String> customer_services=[
+  "Contact Us",
+  "Color Chart",
+  "Download Center",
+  "Privacy Policy",
+  "Terms & Conditions",
+  "Imprint"
+];
+
+List<String> information=[
+  "Opening Hours:",
+  "Monday 8:00 - 17:30",
+  "Tuesday, Thursday 9:00 - 17:30",
+  "Wednesday 9:00 - 18:30",
+  "Friday 9:00 - 17:00",
+  "Saturday CLOSED",
+  "Sunday CLOSED",
+  "Special Timings"
+];
+
+
 
 
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:noor_moden/views/widgets/commons/product_card.dart';
+
+import '../../../widgets/commons/product_card.dart';
 
 class TypeProducts extends StatefulWidget {
   final String title;
@@ -36,7 +37,7 @@ class _TypeProductsState extends State<TypeProducts> {
           ),
           SizedBox(height: 20.0,),
           Container(
-            height: width>800?610:width>600?850:740,
+            height: width>800?620:width>600?860:740,
             width: double.infinity,
             child: GridView.builder(
               scrollDirection: Axis.horizontal,
@@ -45,7 +46,7 @@ class _TypeProductsState extends State<TypeProducts> {
                 return Container(
                   margin: EdgeInsets.only(left: 5.0),
                   child: ProductCard(
-                    height: width>800?600:width>600?320:250,
+                    height: width>800?580:width>600?300:230,
                   ),
                   // child: Card(color: Colors.green,),
                 );
@@ -54,8 +55,8 @@ class _TypeProductsState extends State<TypeProducts> {
               },
               gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: width>800?1:2,
-                mainAxisSpacing: 5.0,
-                mainAxisExtent: width>800?width*0.24:width*0.49,
+                mainAxisSpacing: 0.0,
+                mainAxisExtent: width>800?width*0.24:width*0.46,
 
               ),
 

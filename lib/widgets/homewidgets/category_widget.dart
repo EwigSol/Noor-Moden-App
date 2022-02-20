@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../helper/on_hover_affect.dart';
+import '../../helper/on_hover_affect.dart';
 
 class CustomeCard extends StatefulWidget {
   final String imagePath;
@@ -32,6 +32,7 @@ class _CustomeCardState extends State<CustomeCard> {
         ),
         child: OnHover(
             val: 0.0,
+            isProduct: false,
             duraton: Duration(milliseconds: 600),
             builder: (hover) {
               return Stack(
@@ -40,6 +41,7 @@ class _CustomeCardState extends State<CustomeCard> {
                     alignment: Alignment.bottomRight,
                     child: Image.asset(widget.imagePath,
                         height: hover ? height : height-(height*0.2),
+                      // height: height-10,
                         fit: BoxFit.fill,
                         // width: hover ? 280 : 230
                     ),
@@ -49,7 +51,7 @@ class _CustomeCardState extends State<CustomeCard> {
                     width: double.infinity,
                     padding: EdgeInsets.only(left: 10.0),
                     alignment: Alignment.centerLeft,
-                    margin: EdgeInsets.all(hover ? 7.0 : 14.0),
+                    // margin: EdgeInsets.all(hover ? 7.0 : 14.0),
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.brown, width: 3.0),
                     ),

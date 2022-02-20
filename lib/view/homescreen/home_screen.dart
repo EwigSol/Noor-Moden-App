@@ -2,13 +2,15 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:noor_moden/constants.dart';
 import 'package:noor_moden/helper/on_hover_affect.dart';
-import 'package:noor_moden/views/widgets/commons/top_menu.dart';
-import 'package:noor_moden/views/widgets/home_screen/category_widget.dart';
-import 'package:noor_moden/views/widgets/home_screen/slider.dart';
-import 'package:noor_moden/views/widgets/home_screen/sub_screens/new_arrivals.dart';
-import 'package:noor_moden/widgets/feature_widget.dart';
+import 'package:noor_moden/widgets/homewidgets/category_widget.dart';
+import 'package:noor_moden/view/homescreen/subscreens/new_arrivals.dart';
+import 'package:noor_moden/widgets/homewidgets/feature_widget.dart';
 
-import 'home_screen/sub_screens/newest_arrivels.dart';
+import '../../widgets/commons/contact_us.dart';
+import '../../widgets/commons/top_menu.dart';
+import '../../widgets/homewidgets/instagram_contact.dart';
+import '../../widgets/homewidgets/slider.dart';
+import 'subscreens/newest_arrivels.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -172,10 +174,10 @@ class _HomeScreenState extends State<HomeScreen>
               Container(
                 margin: EdgeInsets.only(top: 20.0),
                 height: width > 1200
-                    ? 300
+                    ? 350
                     : width > 800
-                        ? 220
-                        : 140,
+                        ? 240
+                        : 180,
                 padding: EdgeInsets.symmetric(horizontal: width * 0.03),
                 alignment: Alignment.center,
                 child: GridView.builder(
@@ -184,11 +186,12 @@ class _HomeScreenState extends State<HomeScreen>
                   itemBuilder: (context, index) {
                     return OnHover(
                         val: -5,
+                        isProduct: false,
                         duraton: Duration(milliseconds: 300),
                         builder: (ishover) {
                           return Container(
-                            margin: EdgeInsets.symmetric(horizontal: 10.0),
-                            width: width * 0.3,
+                            margin: EdgeInsets.symmetric(horizontal: 2.0),
+                            // width: width>800?width * 0.3:width*0.325,
                             child: Card(
                               elevation: 0,
                               child: CustomeCard(
@@ -198,7 +201,7 @@ class _HomeScreenState extends State<HomeScreen>
                                     ? 250
                                     : width > 800
                                         ? 190
-                                        : 100,
+                                        : 110,
                               ),
                             ),
                           );
@@ -206,7 +209,8 @@ class _HomeScreenState extends State<HomeScreen>
                   },
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 1,
-                      mainAxisExtent: width > 800 ? width * 0.26 : width * 0.3),
+                      mainAxisSpacing: 2.0,
+                      mainAxisExtent: width > 800 ? width * 0.29 : width * 0.3),
                 ),
               ),
 
@@ -256,44 +260,64 @@ class _HomeScreenState extends State<HomeScreen>
                     Container(
                       margin: EdgeInsets.only(top: 20.0),
                       height: width > 1200
-                          ? 300
+                          ? 350
                           : width > 800
-                              ? 220
-                              : 140,
+                              ? 230
+                              : 200,
                       padding: EdgeInsets.symmetric(horizontal: width * 0.03),
                       alignment: Alignment.center,
                       child: GridView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: Images.length,
                         itemBuilder: (context, index) {
-                          return  Container(
-                                  margin:
-                                      EdgeInsets.symmetric(horizontal: 10.0),
-                                  width: width * 0.33,
-                                  child: Featured(
-                                    title: titles[index],
-                                    imagePath: Images[index],
-                                    height: width > 1200
-                                        ? 250
-                                        : width > 800
-                                            ? 240
-                                            : 230,
-                                  ),
-                                );
-
+                          return Container(
+                            margin: EdgeInsets.symmetric(horizontal: 10.0),
+                            width: width * 0.30,
+                            child: Featured(
+                              title: titles[index],
+                              imagePath: Images[index],
+                              height: width > 1200
+                                  ? 330
+                                  : width > 800
+                                      ? 210
+                                      : 170,
+                            ),
+                          );
                         },
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 1,
                             mainAxisExtent:
-                                width > 800 ? width * 0.3 : width * 0.3),
+                                width > 800 ? width * 0.3 : width * 0.29),
                       ),
                     ),
-
                   ],
                 ),
               ),
+              SizedBox(
+                height: 20.0,
+              ),
 
-              SizedBox(height: 50.0,),
+              Container(height: 200, child: InstaContact()),
+
+            Container(
+                color: Colors.black87,
+                // height: width>800?300:410,
+                padding: EdgeInsets.symmetric(
+                  vertical: 15.0,
+                  horizontal: 15.0,
+                ),
+                child:  width>1000?ContactUs(
+                  customersurvices: customer_services,
+                  information: information,
+                  shopList: shops,
+                ):ContactUsMobile(
+    customersurvices: customer_services,
+    information: information,
+    shopList: shops,),
+              ),
+              SizedBox(
+                height: 40.0,
+              ),
 
               // Container(
               //   height: MediaQuery.of(context).size.height*0.8,
