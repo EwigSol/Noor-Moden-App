@@ -2,6 +2,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:noor_moden/constants.dart';
 import 'package:noor_moden/helper/on_hover_affect.dart';
+import 'package:noor_moden/widgets/commons/custome_drawer.dart';
 import 'package:noor_moden/widgets/homewidgets/category_widget.dart';
 import 'package:noor_moden/view/homescreen/subscreens/new_arrivals.dart';
 import 'package:noor_moden/widgets/homewidgets/feature_widget.dart';
@@ -30,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen>
     'Item4',
   ];
   late TabController _tabController;
+  bool hideHome=false;
   @override
   void initState() {
     // TODO: implement initState
@@ -41,10 +43,11 @@ class _HomeScreenState extends State<HomeScreen>
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
+      drawer: CustomDrawer(),
       appBar: width > 800
           ? PreferredSize(child: Container(), preferredSize: Size(0, 0))
           : PreferredSize(
-              child: TopMenuMobile(), preferredSize: Size(double.infinity, 40)),
+              child: TopMenuMobile(), preferredSize: Size(double.infinity, 70)),
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
@@ -58,11 +61,20 @@ class _HomeScreenState extends State<HomeScreen>
                       height: 45,
                       child: TopMenu())
                   : Offstage(),
-              Image.asset(
-                "assets/logo.png",
-                width: 150,
-                height: 150,
-              ),
+              width > 800
+                  ? InkWell(
+                onTap: (){
+                  setState(() {
+                    hideHome=false;
+                  });
+                },
+                    child: Image.asset(
+                        "assets/logo.png",
+                        width: 150,
+                        height: 150,
+                      ),
+                  )
+                  : Offstage(),
               SizedBox(
                 height: 20.0,
               ),
@@ -82,7 +94,11 @@ class _HomeScreenState extends State<HomeScreen>
                         Theme.of(context).primaryColor),
                     controller: _tabController,
                     indicatorWeight: 2,
-
+                  onTap: (val){
+                      setState(() {
+                        hideHome=true;
+                      });
+                  },
                     indicatorColor: Colors.grey.shade900,
                     isScrollable: false,
 
@@ -167,153 +183,211 @@ class _HomeScreenState extends State<HomeScreen>
                   ),
                 ),
               ),
+              hideHome?
               Container(
-                margin: EdgeInsets.only(top: 20.0),
-                child: CustomSlider(),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 20.0),
-                height: width > 1200
-                    ? 350
-                    : width > 800
-                        ? 240
-                        : 180,
-                padding: EdgeInsets.symmetric(horizontal: width * 0.03),
-                alignment: Alignment.center,
-                child: GridView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: Images.length,
-                  itemBuilder: (context, index) {
-                    return OnHover(
-                        val: -5,
-                        isProduct: false,
-                        duraton: Duration(milliseconds: 300),
-                        builder: (ishover) {
-                          return Container(
-                            margin: EdgeInsets.symmetric(horizontal: 2.0),
-                            // width: width>800?width * 0.3:width*0.325,
-                            child: Card(
-                              elevation: 0,
-                              child: CustomeCard(
-                                title: titles[index],
-                                imagePath: Images[index],
-                                height: width > 1200
-                                    ? 250
-                                    : width > 800
-                                        ? 190
-                                        : 110,
-                              ),
-                            ),
-                          );
-                        });
-                  },
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 1,
-                      mainAxisSpacing: 2.0,
-                      mainAxisExtent: width > 800 ? width * 0.29 : width * 0.3),
-                ),
-              ),
+                height: MediaQuery.of(context).size.height*0.8,
+                child: TabBarView(
 
-              Container(
-                  child: TypeProducts(title: "NEW ARRIVALS", type: "new")),
-              SizedBox(
-                height: 20.0,
-              ),
-              Container(
-                  child: NewestArrivals(
-                type: "newest",
-                imageUrl: "dummy url",
-                title: "OUR NEWEST ARRIVALS",
-              )),
-              SizedBox(
-                height: 15.0,
-              ),
-              Container(
-                  child: TypeProducts(title: "TRENDING NOW", type: "trending")),
-              Container(
-                child: Column(
-                  children: [
-                    Row(
+                    controller: _tabController,
+                    children: [
+                      Container(child: Center(
+                        child: Text(
+                          "will disply here"
+                        ),
+                      ),),
+                      Container(child: Center(
+                        child: Text(
+                            "will disply here"
+                        ),
+                      ),),
+                      Container(child: Center(
+                        child: Text(
+                            "will disply here"
+                        ),
+                      ),),
+                      Container(child: Center(
+                        child: Text(
+                            "will disply here"
+                        ),
+                      ),),
+                      Container(child: Center(
+                        child: Text(
+                            "will disply here"
+                        ),
+                      ),),  Container(child: Center(
+                        child: Text(
+                            "will disply here"
+                        ),
+                      ),),
+                      Container(child: Center(
+                        child: Text(
+                            "will disply here"
+                        ),
+                      ),),
+
+                    ]),
+              )
+
+        :Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(top: 20.0),
+                    child: CustomSlider(),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 20.0),
+                    height: width > 1200
+                        ? 350
+                        : width > 800
+                            ? 240
+                            : 180,
+                    padding: EdgeInsets.symmetric(horizontal: width * 0.03),
+                    alignment: Alignment.center,
+                    child: GridView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: Images.length,
+                      itemBuilder: (context, index) {
+                        return OnHover(
+                            val: -5,
+                            isDrawer: false,
+                            isProduct: false,
+                            duraton: Duration(milliseconds: 300),
+                            builder: (ishover) {
+                              return Container(
+                                margin: EdgeInsets.symmetric(horizontal: 2.0),
+                                // width: width>800?width * 0.3:width*0.325,
+                                child: Card(
+                                  elevation: 0,
+                                  child: CustomeCard(
+                                    title: titles[index],
+                                    imagePath: Images[index],
+                                    height: width > 1200
+                                        ? 250
+                                        : width > 800
+                                            ? 190
+                                            : 110,
+                                  ),
+                                ),
+                              );
+                            });
+                      },
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 1,
+                          mainAxisSpacing: 2.0,
+                          mainAxisExtent:
+                              width > 800 ? width * 0.29 : width * 0.3),
+                    ),
+                  ),
+                  Container(
+                      child: TypeProducts(title: "NEW ARRIVALS", type: "new")),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  Container(
+                      child: NewestArrivals(
+                    type: "newest",
+                    imageUrl: "dummy url",
+                    title: "OUR NEWEST ARRIVALS",
+                  )),
+                  SizedBox(
+                    height: 15.0,
+                  ),
+                  Container(
+                      child: TypeProducts(
+                          title: "TRENDING NOW", type: "trending")),
+                  Container(
+                    child: Column(
                       children: [
-                        Expanded(
-                            child: Divider(
-                          height: 1.0,
-                          color: Colors.grey.shade700,
-                        )),
-                        SizedBox(
-                          width: 10.0,
+                        Row(
+                          children: [
+                            Expanded(
+                                child: Divider(
+                              height: 1.0,
+                              color: Colors.grey.shade700,
+                            )),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            Text(
+                              "#FEATURED ON NOOR MODEN",
+                              style: Theme.of(context).textTheme.headline1,
+                            ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            Expanded(
+                                child: Divider(
+                              height: 1.0,
+                              color: Colors.grey.shade700,
+                            )),
+                          ],
                         ),
-                        Text(
-                          "#FEATURED ON NOOR MODEN",
-                          style: Theme.of(context).textTheme.headline1,
+                        Container(
+                          margin: EdgeInsets.only(top: 20.0),
+                          height: width > 1200
+                              ? 350
+                              : width > 800
+                                  ? 230
+                                  : 200,
+                          padding:
+                              EdgeInsets.symmetric(horizontal: width * 0.03),
+                          alignment: Alignment.center,
+                          child: GridView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: Images.length,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                margin: EdgeInsets.symmetric(horizontal: 10.0),
+                                width: width * 0.30,
+                                child: Featured(
+                                  title: titles[index],
+                                  imagePath: Images[index],
+                                  height: width > 1200
+                                      ? 330
+                                      : width > 800
+                                          ? 210
+                                          : 170,
+                                ),
+                              );
+                            },
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 1,
+                                    mainAxisExtent: width > 800
+                                        ? width * 0.3
+                                        : width * 0.29),
+                          ),
                         ),
-                        SizedBox(
-                          width: 10.0,
-                        ),
-                        Expanded(
-                            child: Divider(
-                          height: 1.0,
-                          color: Colors.grey.shade700,
-                        )),
                       ],
                     ),
-                    Container(
-                      margin: EdgeInsets.only(top: 20.0),
-                      height: width > 1200
-                          ? 350
-                          : width > 800
-                              ? 230
-                              : 200,
-                      padding: EdgeInsets.symmetric(horizontal: width * 0.03),
-                      alignment: Alignment.center,
-                      child: GridView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: Images.length,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            margin: EdgeInsets.symmetric(horizontal: 10.0),
-                            width: width * 0.30,
-                            child: Featured(
-                              title: titles[index],
-                              imagePath: Images[index],
-                              height: width > 1200
-                                  ? 330
-                                  : width > 800
-                                      ? 210
-                                      : 170,
-                            ),
-                          );
-                        },
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 1,
-                            mainAxisExtent:
-                                width > 800 ? width * 0.3 : width * 0.29),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
+
               SizedBox(
                 height: 20.0,
               ),
 
               Container(height: 200, child: InstaContact()),
 
-            Container(
+              Container(
                 color: Colors.black87,
                 // height: width>800?300:410,
                 padding: EdgeInsets.symmetric(
                   vertical: 15.0,
                   horizontal: 15.0,
                 ),
-                child:  width>1000?ContactUs(
-                  customersurvices: customer_services,
-                  information: information,
-                  shopList: shops,
-                ):ContactUsMobile(
-    customersurvices: customer_services,
-    information: information,
-    shopList: shops,),
+                child: width > 1000
+                    ? ContactUs(
+                        customersurvices: customer_services,
+                        information: information,
+                        shopList: shops,
+                      )
+                    : ContactUsMobile(
+                        customersurvices: customer_services,
+                        information: information,
+                        shopList: shops,
+                      ),
               ),
               SizedBox(
                 height: 40.0,

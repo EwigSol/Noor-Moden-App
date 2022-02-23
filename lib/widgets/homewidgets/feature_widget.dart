@@ -34,6 +34,7 @@ class _FeaturedState extends State<Featured> {
             ),
           ),
           child: OnHover(
+              isDrawer: false,
               val: 0.0,
               isProduct: false,
               duraton: Duration(milliseconds: 1400),

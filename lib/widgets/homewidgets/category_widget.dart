@@ -31,6 +31,7 @@ class _CustomeCardState extends State<CustomeCard> {
           ),
         ),
         child: OnHover(
+          isDrawer: false,
             val: 0.0,
             isProduct: false,
             duraton: Duration(milliseconds: 600),

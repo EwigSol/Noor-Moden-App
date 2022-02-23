@@ -22,6 +22,7 @@ class ProductCardState extends State<ProductCard> {
     return  OnHover(
       val: -8.0,
       isProduct: true,
+        isDrawer: false,
       builder: (ishover) {
         return Card(
           elevation: ishover?6.0:3.0,
