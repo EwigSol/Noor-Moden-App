@@ -75,7 +75,11 @@ class TopMenuMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: Colors.white,
+   iconTheme: IconThemeData(
+     color: Colors.grey.shade800
+   ),
+     elevation: 2.0,
      title: Row(
        mainAxisAlignment: MainAxisAlignment.center,
        children: [
@@ -86,7 +90,7 @@ class TopMenuMobile extends StatelessWidget {
          ),
 
          SizedBox(width: 10.0,),
-         Image.asset("assets/logo.png",width: 30.0,height: 30.0,),
+         Image.asset("assets/logo.png",width: 50.0,height: 50.0,),
          SizedBox(width: 10.0,),
          Icon(
              Icons.person,

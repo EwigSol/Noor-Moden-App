@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:noor_moden/constants.dart';
-import 'package:noor_moden/views/widgets/commons/product_card.dart';
 
 class NewestArrivals extends StatefulWidget {
   final String title;
@@ -25,8 +23,10 @@ class _NewestArrivalsState extends State<NewestArrivals> {
   Widget build(BuildContext context) {
     var width=MediaQuery.of(context).size.width;
     return Container(
+      alignment:Alignment.center,
       padding: EdgeInsets.all(10.0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
          MaterialButton(
            padding: EdgeInsets.symmetric(horizontal: 25.0,vertical: 15.0),
@@ -104,8 +104,8 @@ class _NewestArrivalsState extends State<NewestArrivals> {
               },
               gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 1,
-                mainAxisSpacing: 5.0,
-                mainAxisExtent: width*0.3,
+                mainAxisSpacing: 8.0,
+                mainAxisExtent: width*0.315,
 
               ),
 

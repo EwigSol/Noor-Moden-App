@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../helper/on_hover_affect.dart';
+import '../../../../helper/on_hover_affect.dart';
 
 class Featured extends StatefulWidget {
   final String imagePath;
@@ -14,10 +14,11 @@ class Featured extends StatefulWidget {
 }
 
 class _FeaturedState extends State<Featured> {
-  double height = 280.0;
+
   bool ishover = false;
   @override
   Widget build(BuildContext context) {
+    double height = widget.height;
     return Column(
       children: [
         Container(
@@ -33,31 +34,28 @@ class _FeaturedState extends State<Featured> {
             ),
           ),
           child: OnHover(
+              isDrawer: false,
               val: 0.0,
-              duraton: Duration(milliseconds: 600),
+              isProduct: false,
+              duraton: Duration(milliseconds: 1400),
               builder: (hover) {
-                return Stack(
-                  children: [
-                    Align(
-                      alignment: Alignment.center,
-                      child: Image.asset(widget.imagePath,
-                        fit: BoxFit.cover,
-                        height: height*0.75,
-                        // width: hover ? 280 : 230
-                      ),
+                return Container(
+                  height:height*0.75,
+                  width: double.infinity,
+                  padding: EdgeInsets.only(left: 10.0),
+                  alignment: Alignment.center,
+                  // margin: EdgeInsets.all(hover ? height*0.03 : height*0.06),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.brown, width: 3.0),
+                  ),
+                  child:Align(
+                    alignment: Alignment.center,
+                    child: Image.asset(widget.imagePath,
+                      fit: BoxFit.cover,
+                      // height: height*0.75,
+                      // width: hover ? 280 : 230
                     ),
-                    Container(
-                      height:height*0.75,
-                      width: double.infinity,
-                      padding: EdgeInsets.only(left: 10.0),
-                      alignment: Alignment.centerLeft,
-                      margin: EdgeInsets.all(hover ? height*0.03 : height*0.06),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.brown, width: 3.0),
-                      ),
-                    ),
-
-                  ],
+                  ),
                 );
               }),
         ),
