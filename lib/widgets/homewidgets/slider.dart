@@ -12,12 +12,11 @@ class CustomSlider extends StatelessWidget {
    CustomSlider({Key? key}) : super(key: key);
    final List<Widget> imageSliders = imgList
        .map((item) => Container(
-         margin: EdgeInsets.all(5.0),
+         // margin: EdgeInsets.all(5.0),
          child: ClipRRect(
-             borderRadius: BorderRadius.all(Radius.circular(5.0)),
              child: Stack(
                children: <Widget>[
-                 Image.asset(item, fit: BoxFit.cover, width: double.infinity),
+                 Image.asset(item, fit: BoxFit.cover, width: double.infinity,height: 520,),
                  Positioned(
                    bottom: 0.0,
                    left: 0.0,
@@ -34,7 +33,7 @@ class CustomSlider extends StatelessWidget {
                        ),
                      ),
                      padding: EdgeInsets.symmetric(
-                         vertical: 10.0, horizontal: 20.0),
+                         vertical: 10.0,horizontal: 20),
                      child: Text(
                        'No. ${imgList.indexOf(item)} image',
                        style: TextStyle(
@@ -63,6 +62,7 @@ child: CarouselSlider(
 
     viewportFraction: 0.999,
     initialPage: 0,
+    disableCenter: true,
     enableInfiniteScroll: true,
     reverse: false,
     autoPlayInterval: Duration(seconds: 2),

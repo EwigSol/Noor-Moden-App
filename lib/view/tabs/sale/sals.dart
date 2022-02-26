@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:noor_moden/view/homescreen/subscreens/new_arrivals.dart';
 import 'package:noor_moden/widgets/tabs/top_container.dart';
 
-class EveningDresses extends StatefulWidget {
-  const EveningDresses({Key? key}) : super(key: key);
+class Sals extends StatefulWidget {
+  const Sals({Key? key}) : super(key: key);
 
   @override
-  _EveningDressesState createState() => _EveningDressesState();
+  _SalsState createState() => _SalsState();
 }
 
-class _EveningDressesState extends State<EveningDresses> {
+class _SalsState extends State<Sals> {
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
         children: [
-          TopContainer(title: "EVENINGDRESSES"),
+          TopContainer(title: "SALS"),
           SizedBox(height: 30,),
-          TypeProducts(title: "evening dresses", type: "evening",isShowBanner: false,itemCount: 8,)
+          TypeProducts(title: "sals", type: "sals",isShowBanner: false,itemCount: 8,)
         ],
       ),
     );

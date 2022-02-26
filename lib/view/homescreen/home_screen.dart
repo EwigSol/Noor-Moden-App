@@ -2,6 +2,12 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:noor_moden/constants.dart';
 import 'package:noor_moden/helper/on_hover_affect.dart';
+import 'package:noor_moden/view/tabs/big_size/digsize.dart';
+import 'package:noor_moden/view/tabs/cooktail_dress/cooktail_dress.dart';
+import 'package:noor_moden/view/tabs/eveningDress/EveningDress.dart';
+import 'package:noor_moden/view/tabs/new_arrivals/new_arrivals.dart';
+import 'package:noor_moden/view/tabs/sale/sals.dart';
+import 'package:noor_moden/view/tabs/wedding/wedding_dresses.dart';
 import 'package:noor_moden/widgets/commons/custome_drawer.dart';
 import 'package:noor_moden/widgets/homewidgets/category_widget.dart';
 import 'package:noor_moden/view/homescreen/subscreens/new_arrivals.dart';
@@ -42,6 +48,7 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       drawer: CustomDrawer(),
       appBar: width > 800
@@ -50,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen>
               child: TopMenuMobile(), preferredSize: Size(double.infinity, 70)),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+          padding: EdgeInsets.symmetric( vertical: 10.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -58,6 +65,7 @@ class _HomeScreenState extends State<HomeScreen>
               width > 800
                   ? Container(
                       margin: EdgeInsets.only(bottom: 20.0),
+                      padding: EdgeInsets.symmetric(horizontal: 20.0),
                       height: 45,
                       child: TopMenu())
                   : Offstage(),
@@ -86,7 +94,8 @@ class _HomeScreenState extends State<HomeScreen>
                     right: width * 0.08),
                 height: 40,
                 width: double.infinity,
-                child: DefaultTabController(
+                child: width>800?
+                DefaultTabController(
                   length: 7,
                   child: TabBar(
                     //  physics: NeverScrollableScrollPhysics(),
@@ -181,49 +190,32 @@ class _HomeScreenState extends State<HomeScreen>
                             )),
                           ],
                   ),
-                ),
+                ):Offstage(),
               ),
               hideHome?
               Container(
-                height: MediaQuery.of(context).size.height*0.8,
+                // height: MediaQuery.of(context).size.height*0.8,
+              height: width>800?1010:1250,
                 child: TabBarView(
 
                     controller: _tabController,
                     children: [
-                      Container(child: Center(
+                      Center(
+
+                        child: NewArrivals(),
+                      ),
+                      Container(child: EveningDresses(),
+
+                        ),
+                      Container(child:CooktailDresses()),
+                      Container(child: WeddingDresses()),
+                      Container(child: BigSize()),
+                       Container(child: Center(
                         child: Text(
-                          "will disply here"
+                            "accessoris will disply here"
                         ),
                       ),),
-                      Container(child: Center(
-                        child: Text(
-                            "will disply here"
-                        ),
-                      ),),
-                      Container(child: Center(
-                        child: Text(
-                            "will disply here"
-                        ),
-                      ),),
-                      Container(child: Center(
-                        child: Text(
-                            "will disply here"
-                        ),
-                      ),),
-                      Container(child: Center(
-                        child: Text(
-                            "will disply here"
-                        ),
-                      ),),  Container(child: Center(
-                        child: Text(
-                            "will disply here"
-                        ),
-                      ),),
-                      Container(child: Center(
-                        child: Text(
-                            "will disply here"
-                        ),
-                      ),),
+                      Container(child: Sals()),
 
                     ]),
               )
@@ -279,7 +271,7 @@ class _HomeScreenState extends State<HomeScreen>
                     ),
                   ),
                   Container(
-                      child: TypeProducts(title: "NEW ARRIVALS", type: "new")),
+                      child: TypeProducts(title: "NEW ARRIVALS", type: "new",isShowBanner: true,itemCount: 4,)),
                   SizedBox(
                     height: 20.0,
                   ),
@@ -294,7 +286,7 @@ class _HomeScreenState extends State<HomeScreen>
                   ),
                   Container(
                       child: TypeProducts(
-                          title: "TRENDING NOW", type: "trending")),
+                          title: "TRENDING NOW", type: "trending",itemCount: 4,isShowBanner: true,)),
                   Container(
                     child: Column(
                       children: [
@@ -393,49 +385,6 @@ class _HomeScreenState extends State<HomeScreen>
                 height: 40.0,
               ),
 
-              // Container(
-              //   height: MediaQuery.of(context).size.height*0.8,
-              //   child: TabBarView(
-              //
-              //       controller: _tabController,
-              //       children: [
-              //         Container(child: Center(
-              //           child: Text(
-              //             "will disply here"
-              //           ),
-              //         ),),
-              //         Container(child: Center(
-              //           child: Text(
-              //               "will disply here"
-              //           ),
-              //         ),),
-              //         Container(child: Center(
-              //           child: Text(
-              //               "will disply here"
-              //           ),
-              //         ),),
-              //         Container(child: Center(
-              //           child: Text(
-              //               "will disply here"
-              //           ),
-              //         ),),
-              //         Container(child: Center(
-              //           child: Text(
-              //               "will disply here"
-              //           ),
-              //         ),),  Container(child: Center(
-              //           child: Text(
-              //               "will disply here"
-              //           ),
-              //         ),),
-              //         Container(child: Center(
-              //           child: Text(
-              //               "will disply here"
-              //           ),
-              //         ),),
-              //
-              //       ]),
-              // ),
             ],
           ),
         ),

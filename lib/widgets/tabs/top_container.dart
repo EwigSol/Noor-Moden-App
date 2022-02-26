@@ -7,17 +7,8 @@ class TopContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        alignment: Alignment.bottomRight,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            colors: [
-              Colors.brown.withOpacity(0.8),
-              Colors.brown.withOpacity(0.2),
-            ],
-          ),
-        ),
+      height: 300,
+        alignment: Alignment.center,
         child:  Stack(
           children: [
             Align(
@@ -34,12 +25,12 @@ class TopContainer extends StatelessWidget {
               width: double.infinity,
 
               padding: EdgeInsets.only(left: 10.0),
-              alignment: Alignment.centerLeft,
+              alignment: Alignment.center,
               margin: EdgeInsets.all(12.0),
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.brown, width: 3.0),
               ),
-              child:Text(title,style: Theme.of(context).textTheme.headline1,),
+              child:Text(title,style: Theme.of(context).textTheme.headline1!.copyWith(color: Colors.white),),
             ),
           ],
         )
