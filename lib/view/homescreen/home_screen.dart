@@ -50,7 +50,11 @@ class _HomeScreenState extends State<HomeScreen>
     var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      drawer: CustomDrawer(),
+      drawer: CustomDrawer(controller: _tabController,ontap: (){
+        setState(() {
+          hideHome=true;
+        });
+      },),
       appBar: width > 800
           ? PreferredSize(child: Container(), preferredSize: Size(0, 0))
           : PreferredSize(
@@ -97,11 +101,13 @@ class _HomeScreenState extends State<HomeScreen>
                 child: width>800?
                 DefaultTabController(
                   length: 7,
+
                   child: TabBar(
                     //  physics: NeverScrollableScrollPhysics(),
                     overlayColor: MaterialStateProperty.all(
                         Theme.of(context).primaryColor),
                     controller: _tabController,
+
                     indicatorWeight: 2,
                   onTap: (val){
                       setState(() {
@@ -199,6 +205,7 @@ class _HomeScreenState extends State<HomeScreen>
                 child: TabBarView(
 
                     controller: _tabController,
+
                     children: [
                       Center(
 

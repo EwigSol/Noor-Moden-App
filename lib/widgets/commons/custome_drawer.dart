@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:noor_moden/helper/on_hover_affect.dart';
 
 class CustomDrawer extends StatefulWidget {
-  const CustomDrawer({Key? key}) : super(key: key);
+  final TabController controller;
+  Function() ontap;
+   CustomDrawer({Key? key,required this.controller,required this.ontap }) : super(key: key);
 
   @override
   CustomDrawerState createState() => CustomDrawerState();
@@ -11,6 +13,7 @@ class CustomDrawer extends StatefulWidget {
 class CustomDrawerState extends State<CustomDrawer> {
   @override
   Widget build(BuildContext context) {
+
     return Container(
       height: MediaQuery.of(context).size.height,
       color: Colors.white,
@@ -37,13 +40,13 @@ class CustomDrawerState extends State<CustomDrawer> {
                       )
                   ),
                 ),
-                getMenuContainer(text: "NEW ARRIVALS "),
-                getMenuContainer(text: "EVENINGDRESSES"),
-                getMenuContainer(text: "COCKTAILDRESSES"),
-                getMenuContainer(text: "WEDDING"),
-                getMenuContainer(text: "BIG SIZES"),
-                getMenuContainer(text: "ACCESSORIES"),
-                getMenuContainer(text: "SALE %"),
+                getMenuContainer(text: "NEW ARRIVALS ",index:0),
+                getMenuContainer(text: "EVENINGDRESSES",index: 1),
+                getMenuContainer(text: "COCKTAILDRESSES",index: 2),
+                getMenuContainer(text: "WEDDING",index: 3),
+                getMenuContainer(text: "BIG SIZES",index: 4),
+                getMenuContainer(text: "ACCESSORIES",index: 5),
+                getMenuContainer(text: "SALE %",index: 6),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 15.0,vertical: 10.0),
                   child: Column(
@@ -110,31 +113,42 @@ class CustomDrawerState extends State<CustomDrawer> {
     );
   }
 
-  getMenuContainer({text}){
+  getMenuContainer({text, int? index}){
 
-    return OnHover(
-      isProduct: false,
-        isDrawer: true,
-      val: -4,
-      builder: (val) {
-        return Container(
-          width: double.infinity,
-          padding: EdgeInsets.only(left: 10.0,top: 17.0,bottom: 17),
-          decoration: BoxDecoration(
-              border: Border(
-                  bottom: BorderSide(color: Colors.grey.shade300,width: 1)
-              )
-          ),
-          child: Text(
-            text,
-            style: TextStyle(
-                fontSize: 14.0,
-                fontWeight: FontWeight.w600,
-                color: val?Theme.of(context).primaryColor:Colors.grey.shade900
-            ),
-          ),
+    return InkWell(
+      onTap: (){
+        widget.ontap();
+        Navigator.pop(context);
+        widget.controller.animateTo(
+index!,
+          duration: Duration(milliseconds: 200)
         );
-      }
+      },
+
+      child: OnHover(
+        isProduct: false,
+          isDrawer: true,
+        val: -4,
+        builder: (val) {
+          return Container(
+            width: double.infinity,
+            padding: EdgeInsets.only(left: 10.0,top: 17.0,bottom: 17),
+            decoration: BoxDecoration(
+                border: Border(
+                    bottom: BorderSide(color: Colors.grey.shade300,width: 1)
+                )
+            ),
+            child: Text(
+              text,
+              style: TextStyle(
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.w600,
+                  color: val?Theme.of(context).primaryColor:Colors.grey.shade900
+              ),
+            ),
+          );
+        }
+      ),
     );
 
   }
