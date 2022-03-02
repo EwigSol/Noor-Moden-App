@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:noor_moden/helper/scroll_behaviour.dart';
@@ -9,38 +8,30 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  // This widget is the root of your application
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       scrollBehavior: MyCustomScrollBehavior(),
       theme: ThemeData(
-
           primaryColor: Color(0xffCBAE71),
-          textTheme:  TextTheme(
+          textTheme: TextTheme(
             headline1: TextStyle(
-              fontSize: 21,
-              fontWeight: FontWeight.w800,
-              color: Colors.grey.shade900
-            ),
+                fontSize: 21,
+                fontWeight: FontWeight.w800,
+                color: Colors.grey.shade900),
             headline2: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w700,
-              color: Colors.black
-            ),
+                fontSize: 15, fontWeight: FontWeight.w700, color: Colors.black),
             headline3: TextStyle(
               fontSize: 16,
-
             ),
             headline4: TextStyle(
               fontSize: 15,
               color: Colors.grey.shade600,
             ),
-
-          )
-      ),
-      home:HomeScreen(),
+          )),
+      home: HomeScreen(),
     );
   }
 }
