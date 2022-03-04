@@ -1,22 +1,18 @@
+// ignore_for_file: must_be_immutable, use_key_in_widget_constructors, prefer_const_constructors
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-
-List<String> Images=[
+List<String> Images = [
   "assets/categories_images/micon.png",
   "assets/categories_images/micon2.png",
   "assets/categories_images/micon3.png",
 ];
-List<String> productImages=List.from(Images.map((e) => e));
+List<String> productImages = List.from(Images.map((e) => e));
 
-List<String> titles=[
-  "EVENING DRESSES",
-  "BIG SIZE",
-  "SALE %"
-];
+List<String> titles = ["EVENING DRESSES", "BIG SIZE", "SALE %"];
 
-
-List<String> shops=[
+List<String> shops = [
   "ACCOUNT",
   "HOME",
   "NEW ARRIVALS",
@@ -28,7 +24,7 @@ List<String> shops=[
   "SALE %"
 ];
 
-List<String> customer_services=[
+List<String> customer_services = [
   "Contact Us",
   "Color Chart",
   "Download Center",
@@ -37,7 +33,7 @@ List<String> customer_services=[
   "Imprint"
 ];
 
-List<String> information=[
+List<String> information = [
   "Opening Hours:",
   "Monday 8:00 - 17:30",
   "Tuesday, Thursday 9:00 - 17:30",
@@ -47,10 +43,6 @@ List<String> information=[
   "Sunday CLOSED",
   "Special Timings"
 ];
-
-
-
-
 
 extension HoverExtension on Widget {
   Widget get translateOnHover {
