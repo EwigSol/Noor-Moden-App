@@ -84,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
           // Email text form field to get email from user
           Container(
-            padding: EdgeInsets.only(top: 20, right: 10),
+            padding: EdgeInsets.only(top: 10, right: 10),
             width: width,
             child: CustomField(
               controller: emailController,
@@ -128,6 +128,7 @@ class _LoginPageState extends State<LoginPage> {
               validate: validation,
             ),
           ),
+          // custom Login Button
           Container(
             padding: EdgeInsets.only(
               top: 20,

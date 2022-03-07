@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:noor_moden/helper/scroll_behaviour.dart';
 import 'package:noor_moden/view/homescreen/home_screen.dart';
 import 'package:noor_moden/view/login/login.dart';
+import 'package:noor_moden/view/signup/signup.dart';
 
 void main() {
   runApp(MyApp());
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
               color: Colors.grey.shade600,
             ),
           )),
+      // home: SignUpPage(),
       home: HomeScreen(),
     );
   }
