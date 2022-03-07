@@ -17,7 +17,8 @@ class _SalsState extends State<Sals> {
         children: [
           TopContainer(title: "SALS"),
           SizedBox(height: 30,),
-          TypeProducts(title: "sals", type: "sals",isShowBanner: false,itemCount: 8,)
+          TypeProducts(title: "sals", type: "sals",isShowBanner: false,itemCount: 8,
+          )
         ],
       ),
     );

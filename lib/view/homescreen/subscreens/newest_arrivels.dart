@@ -4,7 +4,8 @@ class NewestArrivals extends StatefulWidget {
   final String title;
   final String imageUrl;
   final String type;
-  const NewestArrivals({Key? key,required this.title,required this.type,required this.imageUrl}) : super(key: key);
+  final onclick;
+  const NewestArrivals({Key? key,required this.title,required this.type,required this.imageUrl, this.onclick}) : super(key: key);
 
   @override
   _NewestArrivalsState createState() => _NewestArrivalsState();

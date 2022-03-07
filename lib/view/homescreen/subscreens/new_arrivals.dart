@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:noor_moden/controllers/sub_menu_controller.dart';
 
 import '../../../widgets/commons/product_card.dart';
 
@@ -14,6 +16,7 @@ class TypeProducts extends StatefulWidget {
 }
 
 class _TypeProductsState extends State<TypeProducts> {
+  var detailsPageController=Get.put(SubMenuController());
   @override
   Widget build(BuildContext context) {
     var width=MediaQuery.of(context).size.width;
@@ -44,11 +47,18 @@ class _TypeProductsState extends State<TypeProducts> {
             child: GridView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: widget.itemCount,
-              itemBuilder: (context,index){
+              itemBuilder: (context,index ){
                 return Container(
                   margin: EdgeInsets.only(left: 5.0),
-                  child: ProductCard(
-                    height: width>800?580:width>600?300:230,
+                  child: InkWell
+                    (
+onTap: (){
+  print(" item cliked");
+  detailsPageController.showDetails();
+},
+                    child: ProductCard(
+                      height: width>800?580:width>600?300:230,
+                    ),
                   ),
                   // child: Card(color: Colors.green,),
                 );

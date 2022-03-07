@@ -17,7 +17,9 @@ class _NewArrivalsState extends State<NewArrivals> {
              children: [
                TopContainer(title: "NEWARRIVALS"),
                SizedBox(height: 30,),
-               TypeProducts(title: "NEW ARRIVALS", type: "new",isShowBanner: false,itemCount: 8,)
+               TypeProducts(title: "NEW ARRIVALS", type: "new",isShowBanner: false,itemCount: 8,
+
+               )
              ],
            ),
     );

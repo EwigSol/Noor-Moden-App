@@ -17,7 +17,8 @@ class _CooktailDressesState extends State<CooktailDresses> {
         children: [
           TopContainer(title: "COOKTAIL DRESSES"),
           SizedBox(height: 30,),
-          TypeProducts(title: "COOKTAIL DRESSES", type: "COOKTAL",isShowBanner: false,itemCount: 8,)
+          TypeProducts(title: "COOKTAIL DRESSES", type: "COOKTAL",isShowBanner: false,itemCount: 8
+          )
         ],
       ),
     );

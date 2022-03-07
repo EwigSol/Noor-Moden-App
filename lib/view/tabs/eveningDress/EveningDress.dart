@@ -17,7 +17,8 @@ class _EveningDressesState extends State<EveningDresses> {
         children: [
           TopContainer(title: "EVENINGDRESSES"),
           SizedBox(height: 30,),
-          TypeProducts(title: "evening dresses", type: "evening",isShowBanner: false,itemCount: 8,)
+          TypeProducts(title: "evening dresses", type: "evening",isShowBanner: false,itemCount: 8
+          )
         ],
       ),
     );

@@ -17,7 +17,8 @@ class _WeddingDressesState extends State<WeddingDresses> {
         children: [
           TopContainer(title: "WEDDING"),
           SizedBox(height: 30,),
-          TypeProducts(title: "wedding", type: "wedding",isShowBanner: false,itemCount: 8,)
+          TypeProducts(title: "wedding", type: "wedding",isShowBanner: false,itemCount: 8,
+)
         ],
       ),
     );

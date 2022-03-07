@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 class SubMenuController  extends  GetxController{
   var sideIndex=0.obs;
   var hideHome=false.obs;
+  var detailsPage=false.obs;
   change(index){
     sideIndex=index.obs;
   }
@@ -13,6 +14,10 @@ class SubMenuController  extends  GetxController{
     hideHome=false.obs;
  }
 
-
-
+showDetails(){
+    detailsPage=true.obs;
+}
+hideDetails(){
+    detailsPage=false.obs;
+}
 }
