@@ -33,8 +33,8 @@ class MyApp extends StatelessWidget {
               color: Colors.grey.shade600,
             ),
           )),
-      // home: SignUpPage(),
-      home: HomeScreen(),
+      home: SignUpPage(),
+      // home: HomeScreen(),
     );
   }
 }

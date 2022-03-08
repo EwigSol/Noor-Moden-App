@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:noor_moden/widgets/commons/contact_us.dart';
 import 'package:noor_moden/widgets/commons/customButton.dart';
 import 'package:noor_moden/widgets/commons/custom_filed.dart';
+import 'package:noor_moden/widgets/commons/custom_radio_button.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -16,6 +17,21 @@ class SignUpPage extends StatefulWidget {
 late File imageFile;
 
 class _SignUpPageState extends State<SignUpPage> {
+  String? _groupValue;
+  String? _singleValue;
+  String? _secondValue;
+  ValueChanged<String?> _valueChangedHandler() {
+    return (value) => setState(() => _groupValue = value!);
+  }
+
+  ValueChanged<String?> _valuegetHandler() {
+    return (value) => setState(() => _singleValue = value!);
+  }
+
+  ValueChanged<String?> _valueget1Handler() {
+    return (value) => setState(() => _secondValue = value!);
+  }
+
   TextEditingController emailcontroler = TextEditingController();
   TextEditingController passwordcontroler = TextEditingController();
 
@@ -46,6 +62,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        // First Column
                         Container(
                           width: MediaQuery.of(context).size.width > 600 ||
                                   MediaQuery.of(context).size.width > 800
@@ -198,6 +215,34 @@ class _SignUpPageState extends State<SignUpPage> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              //  Title text to show
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 10.0, bottom: 5.0),
+                                child: Text(
+                                  "Title (Mr./Mrs) *",
+                                  style: TextStyle(
+                                    fontSize: 12.0,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black,
+                                    decoration: TextDecoration.none,
+                                  ),
+                                ),
+                              ),
+                              // Radio Button 1
+                              CustomRadioButton(
+                                  value: '1',
+                                  groupValue: _groupValue,
+                                  buttonshape: true,
+                                  text: "Mr*",
+                                  onChanged: _valueChangedHandler()),
+                              // Radio Button 2
+                              CustomRadioButton(
+                                  value: '2',
+                                  buttonshape: true,
+                                  groupValue: _groupValue,
+                                  text: "Mrs*",
+                                  onChanged: _valueChangedHandler()),
                               //  First Name text to show
                               Padding(
                                 padding: const EdgeInsets.only(
@@ -542,6 +587,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             ],
                           ),
                         ),
+                        // Third Column
                         Container(
                           width: MediaQuery.of(context).size.width > 600 ||
                                   MediaQuery.of(context).size.width > 800
@@ -581,6 +627,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   validate: validation,
                                 ),
                               ),
+                              // select image form gallery
                               Container(
                                 padding: EdgeInsets.only(
                                     top: 5,
@@ -605,6 +652,22 @@ class _SignUpPageState extends State<SignUpPage> {
                                   ),
                                 ),
                               ),
+                              // select a single button (1)
+                              CustomRadioButton(
+                                  value: "1",
+                                  groupValue: _singleValue,
+                                  buttonshape: false,
+                                  text:
+                                      "I want to register to the Newsletter of Noor Moden",
+                                  onChanged: _valuegetHandler()),
+                              // select a single button (2)
+                              CustomRadioButton(
+                                  value: "1",
+                                  groupValue: _secondValue,
+                                  buttonshape: false,
+                                  text:
+                                      "I agree that Noor Moden is able to store and use my personal information as well as I have read the privacy policy describing its use. I can revoke my consent to Noor Moden at any time by sending an e-mail or calling Noor Moden.",
+                                  onChanged: _valueget1Handler()),
                             ],
                           ),
                         ),
@@ -614,6 +677,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        // First Column
                         Container(
                           width: MediaQuery.of(context).size.width > 600 ||
                                   MediaQuery.of(context).size.width > 800
@@ -766,6 +830,35 @@ class _SignUpPageState extends State<SignUpPage> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              //  Title text to show
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 10.0, bottom: 5.0),
+                                child: Text(
+                                  "Title (Mr./Mrs) *",
+                                  style: TextStyle(
+                                    fontSize: 12.0,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black,
+                                    decoration: TextDecoration.none,
+                                  ),
+                                ),
+                              ),
+                              // Radio Button 1
+                              CustomRadioButton(
+                                  value: '1',
+                                  groupValue: _groupValue,
+                                  buttonshape: true,
+                                  text: "Mr*",
+                                  onChanged: _valueChangedHandler()),
+                              // Radio Button 2
+                              CustomRadioButton(
+                                  value: '2',
+                                  groupValue: _groupValue,
+                                  buttonshape: true,
+                                  text: "Mrs*",
+                                  onChanged: _valueChangedHandler()),
+
                               //  First Name text to show
                               Padding(
                                 padding: const EdgeInsets.only(
@@ -1110,6 +1203,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             ],
                           ),
                         ),
+                        // Third Column
                         Container(
                           width: MediaQuery.of(context).size.width > 600 ||
                                   MediaQuery.of(context).size.width > 800
@@ -1149,6 +1243,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   validate: validation,
                                 ),
                               ),
+                              // pick image
                               Container(
                                 padding: EdgeInsets.only(
                                     top: 5,
@@ -1173,6 +1268,20 @@ class _SignUpPageState extends State<SignUpPage> {
                                   ),
                                 ),
                               ),
+                              // select a single button (1)
+                              CustomRadioButton(
+                                  value: "1",
+                                  groupValue: _singleValue,
+                                  buttonshape: false,
+                                  text: "Mrs*",
+                                  onChanged: _valuegetHandler()),
+                              // select a single button (2)
+                              CustomRadioButton(
+                                  value: "1",
+                                  groupValue: _secondValue,
+                                  buttonshape: false,
+                                  text: "Mrs*",
+                                  onChanged: _valueget1Handler()),
                             ],
                           ),
                         ),
@@ -1216,8 +1325,11 @@ class _SignUpPageState extends State<SignUpPage> {
 // write a function to validate user input for textformfield
   validation() {}
 
-//
+// onpress function for image picker
   onpress() {
     _getFromGallery();
   }
+
+  // onpressed function for radio button selection
+  onpressedRadio() {}
 }
