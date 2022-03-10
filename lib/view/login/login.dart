@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:noor_moden/view/signup/signup.dart';
 import 'package:noor_moden/widgets/commons/contact_us.dart';
 import 'package:noor_moden/widgets/commons/customButton.dart';
 import 'package:noor_moden/widgets/commons/custom_filed.dart';
@@ -136,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             width: width,
             child: CustomButton(
-                onpress: onpress,
+                onpress: onpresslogin,
                 text: "LOGIN",
                 textColor: Colors.black,
                 buttonColor: Colors.white),
@@ -153,7 +155,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             width: width,
             child: CustomButton(
-              onpress: onpress,
+              onpress: onpressAccount,
               text: "CREATE AN ACCOUNT",
               textColor: Colors.white,
               buttonColor: Colors.black,
@@ -169,4 +171,8 @@ class _LoginPageState extends State<LoginPage> {
 validation() {}
 
 //
-onpress() {}
+onpresslogin() {}
+
+onpressAccount() {
+  Get.to(() => SignUpPage());
+}

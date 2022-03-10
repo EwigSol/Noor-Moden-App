@@ -1,7 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:noor_moden/controllers/signup_controller.dart';
 import 'package:noor_moden/widgets/commons/contact_us.dart';
 import 'package:noor_moden/widgets/commons/customButton.dart';
 import 'package:noor_moden/widgets/commons/custom_filed.dart';
@@ -15,6 +17,7 @@ class SignUpPage extends StatefulWidget {
 }
 
 late File imageFile;
+bool isPhoneNumber = false;
 
 class _SignUpPageState extends State<SignUpPage> {
   String? _groupValue;
@@ -34,6 +37,10 @@ class _SignUpPageState extends State<SignUpPage> {
 
   TextEditingController emailcontroler = TextEditingController();
   TextEditingController passwordcontroler = TextEditingController();
+  TextEditingController phoneControler = TextEditingController();
+  TextEditingController otpControler = TextEditingController();
+
+  SignupController getController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -56,8 +63,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   height: 1,
                 ),
               ),
-              MediaQuery.of(context).size.width > 600 ||
-                      MediaQuery.of(context).size.width > 800
+              // MediaQuery.of(context).size.width > 600 ||
+              MediaQuery.of(context).size.width > 800
                   ? Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -573,7 +580,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 padding: EdgeInsets.only(top: 5, right: 10),
                                 width: width,
                                 child: CustomField(
-                                  controller: emailController,
+                                  controller: phoneControler,
                                   hint: "",
                                   padding: EdgeInsets.all(12.0),
                                   icon: IconData(0x41,
@@ -668,6 +675,40 @@ class _SignUpPageState extends State<SignUpPage> {
                                   text:
                                       "I agree that Noor Moden is able to store and use my personal information as well as I have read the privacy policy describing its use. I can revoke my consent to Noor Moden at any time by sending an e-mail or calling Noor Moden.",
                                   onChanged: _valueget1Handler()),
+
+                              // OTP text field to write otp
+                              isPhoneNumber == false
+                                  ? Container()
+                                  : Container(
+                                      padding: EdgeInsets.only(
+                                          top: 5, right: 10, bottom: 10),
+                                      width: width,
+                                      child: CustomField(
+                                        controller: otpControler,
+                                        hint: " Your OTP",
+                                        padding: EdgeInsets.all(12.0),
+                                        icon: IconData(0x41,
+                                            fontFamily: 'Roboto',
+                                            fontPackage: "",
+                                            matchTextDirection: false),
+                                        maxLins: 1,
+                                        validate: validation,
+                                      ),
+                                    ),
+                              // verify otp button
+                              isPhoneNumber == false
+                                  ? Container()
+                                  : Container(
+                                      padding:
+                                          EdgeInsets.only(top: 20, bottom: 20),
+                                      width: width - 40,
+                                      child: CustomButton(
+                                        onpress: onPressVerifyButton,
+                                        text: "Verify OTP",
+                                        textColor: Colors.white,
+                                        buttonColor: Colors.black,
+                                      ),
+                                    ),
                             ],
                           ),
                         ),
@@ -823,8 +864,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                         // Second Column (center column)
                         Container(
-                          width: MediaQuery.of(context).size.width > 600 ||
-                                  MediaQuery.of(context).size.width > 800
+                          width: MediaQuery.of(context).size.width > 800
                               ? (width - 40) / 3
                               : width,
                           child: Column(
@@ -980,6 +1020,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 ),
                               ),
                               Row(
+                                // width: (width-40)/ ;
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
@@ -1189,7 +1230,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 padding: EdgeInsets.only(top: 5, right: 10),
                                 width: width,
                                 child: CustomField(
-                                  controller: emailController,
+                                  controller: phoneControler,
                                   hint: "",
                                   padding: EdgeInsets.all(12.0),
                                   icon: IconData(0x41,
@@ -1282,6 +1323,39 @@ class _SignUpPageState extends State<SignUpPage> {
                                   buttonshape: false,
                                   text: "Mrs*",
                                   onChanged: _valueget1Handler()),
+                              // OTP text field to write otp
+                              isPhoneNumber == false
+                                  ? Container()
+                                  : Container(
+                                      padding: EdgeInsets.only(
+                                          top: 5, right: 10, bottom: 10),
+                                      width: width,
+                                      child: CustomField(
+                                        controller: otpControler,
+                                        hint: " Your OTP",
+                                        padding: EdgeInsets.all(12.0),
+                                        icon: IconData(0x41,
+                                            fontFamily: 'Roboto',
+                                            fontPackage: "",
+                                            matchTextDirection: false),
+                                        maxLins: 1,
+                                        validate: validation,
+                                      ),
+                                    ),
+                              // verify otp button
+                              isPhoneNumber == false
+                                  ? Container()
+                                  : Container(
+                                      padding:
+                                          EdgeInsets.only(top: 20, bottom: 20),
+                                      width: width - 40,
+                                      child: CustomButton(
+                                        onpress: onPressVerifyButton,
+                                        text: "Verify OTP",
+                                        textColor: Colors.white,
+                                        buttonColor: Colors.black,
+                                      ),
+                                    ),
                             ],
                           ),
                         ),
@@ -1293,7 +1367,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     padding: EdgeInsets.only(top: 20, bottom: 20),
                     width: width - 40,
                     child: CustomButton(
-                      onpress: onpress,
+                      onpress: onPressButton,
                       text: "CREATE AN ACCOUNT",
                       textColor: Colors.white,
                       buttonColor: Colors.black,
@@ -1328,6 +1402,23 @@ class _SignUpPageState extends State<SignUpPage> {
 // onpress function for image picker
   onpress() {
     _getFromGallery();
+  }
+
+  // onpressed function for text field
+  onPressButton() {
+    getController.UserSignUP(phoneControler.text);
+    print(phoneControler.text);
+    setState(() {
+      isPhoneNumber = true;
+    });
+  }
+
+  // onpressed function for text field
+  onPressVerifyButton() {
+    getController.UserConfirmOtp(otpControler.text);
+    setState(() {
+      isPhoneNumber = true;
+    });
   }
 
   // onpressed function for radio button selection

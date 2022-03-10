@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:noor_moden/constants.dart';
 import 'package:noor_moden/helper/on_hover_affect.dart';
 import 'package:noor_moden/view/login/login.dart';
+import 'package:noor_moden/view/signup/signup.dart';
 import 'package:noor_moden/view/tabs/big_size/digsize.dart';
 import 'package:noor_moden/view/tabs/cooktail_dress/cooktail_dress.dart';
 import 'package:noor_moden/view/tabs/eveningDress/EveningDress.dart';
@@ -47,11 +48,13 @@ class _HomeScreenState extends State<HomeScreen>
     _tabController = TabController(vsync: this, length: 7);
   }
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      key: _scaffoldKey,
       drawer: CustomDrawer(
         controller: _tabController,
         ontap: () {
@@ -60,6 +63,7 @@ class _HomeScreenState extends State<HomeScreen>
           });
         },
       ),
+      endDrawer: LoginPage(),
       appBar: width > 800
           ? PreferredSize(child: Container(), preferredSize: Size(0, 0))
           : PreferredSize(
@@ -85,15 +89,10 @@ class _HomeScreenState extends State<HomeScreen>
                           hideHome = false;
                         });
                       },
-                      child: GestureDetector(
-                        onTap: () {
-                          Get.to(LoginPage());
-                        },
-                        child: Image.asset(
-                          "assets/logo.png",
-                          width: 150,
-                          height: 150,
-                        ),
+                      child: Image.asset(
+                        "assets/logo.png",
+                        width: 150,
+                        height: 150,
                       ),
                     )
                   : Offstage(),
