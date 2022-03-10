@@ -1,17 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:noor_moden/helper/scroll_behaviour.dart';
+import 'package:noor_moden/router.dart';
 import 'package:noor_moden/view/homescreen/home_screen.dart';
+import 'package:noor_moden/view/product_details/product_details_screen.dart';
+import 'package:noor_moden/view/product_details/product_detals_page.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialRoute: "/home",
+      routes: {
+        "/home": (context) => HomeScreen(),
+        "/details": (context) => ProductDetailsPage(),
+
+      },
       debugShowCheckedModeBanner: false,
       scrollBehavior: MyCustomScrollBehavior(),
       theme: ThemeData(

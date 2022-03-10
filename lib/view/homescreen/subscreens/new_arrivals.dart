@@ -16,7 +16,6 @@ class TypeProducts extends StatefulWidget {
 }
 
 class _TypeProductsState extends State<TypeProducts> {
-  var detailsPageController=Get.put(SubMenuController());
   @override
   Widget build(BuildContext context) {
     var width=MediaQuery.of(context).size.width;
@@ -50,15 +49,8 @@ class _TypeProductsState extends State<TypeProducts> {
               itemBuilder: (context,index ){
                 return Container(
                   margin: EdgeInsets.only(left: 5.0),
-                  child: InkWell
-                    (
-onTap: (){
-  print(" item cliked");
-  detailsPageController.showDetails();
-},
-                    child: ProductCard(
-                      height: width>800?580:width>600?300:230,
-                    ),
+                  child: ProductCard(
+                    height: width>800?580:width>600?300:230,
                   ),
                   // child: Card(color: Colors.green,),
                 );

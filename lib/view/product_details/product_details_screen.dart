@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 List<String> images=[
@@ -43,18 +44,19 @@ List sizes=[
   "46",
   '42'
 ];
-class ProductDetailsPage extends StatefulWidget {
-  ProductDetailsPage({Key? key}) : super(key: key);
+class ProductDetailsWidget extends StatefulWidget {
+  ProductDetailsWidget({Key? key}) : super(key: key);
 
   @override
-  State<ProductDetailsPage> createState() => _ProductDetailsPageState();
+  State<ProductDetailsWidget> createState() => _ProductDetailsWidgetState();
 }
 
-class _ProductDetailsPageState extends State<ProductDetailsPage> {
+class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
 
-  int selectedIndex=0;
+  int selectedIndex=1;
   String selectedColor="red";
   late String selectedImage;
+  int quantity=0;
 
   @override
   Widget build(BuildContext context) {
@@ -190,6 +192,71 @@ SizedBox(width: 5.0,),
                       }
                       ) ,
                     ),
+
+                    SizedBox(height: 20.0,),
+                    Row(
+                      children: [
+                        Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey.shade700)
+                          ),
+                          child: InkWell(
+                            onTap: (){
+                              setState(() {
+                                if(quantity>1) {
+                                  quantity--;
+                                }
+                              });
+                            },
+                            child: Icon(Icons.remove,color: Colors.grey.shade600,),
+                          ),
+                        ),
+                        Container(
+                          width: 70,
+                          height: 40,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey.shade600)
+                          ),
+                       child: Text(
+                         quantity.toString(),
+                       ),
+                        ),
+                        Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey.shade600)
+                          ),
+                          child: InkWell(
+                            onTap: (){
+                              setState(() {
+                                if(quantity<10) {
+                                  quantity++;
+                                }
+                              });
+                            },
+                            child: Icon(Icons.add,color: Colors.grey.shade800,),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 15.0,),
+                    Text("PRODUCT DESCRIPTION",style: Theme.of(context).textTheme.headline1,) ,
+                    SizedBox(height: 15.0,),
+                    Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, "
+                        "sed do eiusmod tempor incididunt ut labore et dolore magna "
+                        "aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco "
+                        "laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit "
+                        "in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                        " Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",) ,
+
+                    SizedBox(height: 15.0,),
+                    Text("PRODUCT DETAILS",style: Theme.of(context).textTheme.headline1,) ,
+                    SizedBox(height: 15.0,),
+
                   ],
                 )
 
