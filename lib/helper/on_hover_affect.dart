@@ -1,19 +1,11 @@
 import 'package:flutter/material.dart';
-
 class OnHover extends StatefulWidget {
   final Widget Function(bool isHovered) builder;
   final double val;
   final Duration? duraton;
   final bool isProduct;
-  final bool isDrawer;
-  const OnHover(
-      {Key? key,
-      required this.builder,
-      required this.val,
-      this.duraton,
-      required this.isProduct,
-      required this.isDrawer})
-      : super(key: key);
+   final bool isDrawer;
+  const OnHover({Key? key, required  this.builder,required this.val, this.duraton, required this.isProduct,required this.isDrawer}) : super(key: key);
 
   @override
   _OnHoverState createState() => _OnHoverState();
@@ -29,11 +21,7 @@ class _OnHoverState extends State<OnHover> {
       onEnter: (val) => onEntered(true),
       onExit: (val) => onEntered(false),
       child: AnimatedContainer(
-        padding: widget.isDrawer
-            ? EdgeInsets.all(2.0)
-            : widget.isProduct
-                ? EdgeInsets.symmetric(vertical: isHovered ? 6.0 : 14.0)
-                : EdgeInsets.all(isHovered ? 8.0 : 14.0),
+        padding: widget.isDrawer?EdgeInsets.all(2.0):widget.isProduct?EdgeInsets.symmetric(vertical:isHovered?6.0:14.0):EdgeInsets.all(isHovered?8.0:14.0),
         // duration: widget.duraton == null
         //     ? Duration(milliseconds: 1400)
         //     : widget.duraton!,

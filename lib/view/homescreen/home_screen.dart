@@ -105,7 +105,7 @@ class _HomeScreenState extends State<HomeScreen>
                     top: 2,
                     bottom: 8.0,
                     right: width * 0.08),
-                height: 60,
+                height: 40,
                 width: double.infinity,
                 child: width > 800
                     ? DefaultTabController(
@@ -135,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen>
                             fontFamily: 'SourceSansPro-Bold',
                             fontSize: 14,
                           ),
-                          tabs: width < width - 200
+                          tabs: width < 1000
                               ? []
                               : [
                                   Tab(
