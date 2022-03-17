@@ -7,7 +7,6 @@ import 'package:noor_moden/view/homescreen/home_screen.dart';
 import 'package:noor_moden/view/login/login.dart';
 import 'package:noor_moden/view/signup/signup.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:noor_moden/widgets/homewidgets/header_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -60,13 +59,13 @@ class MyApp extends StatelessWidget {
               color: Colors.grey.shade600,
             ),
           )),
-      // home: HeaderHomeWidget(),
+      // home: SignUpPage(),
       home: HomeScreen(),
       getPages: [
         GetPage(name: '/', page: () => HomeScreen()),
         GetPage(name: '/loginPage', page: () => LoginPage()),
         GetPage(name: '/signupPage', page: () => SignUpPage()),
-        GetPage(name: "/headerHomeWidget", page: () => HeaderHomeWidget()),
+        // GetPage(name: "/fourth", page: () => Fourth()),
       ],
     );
   }
