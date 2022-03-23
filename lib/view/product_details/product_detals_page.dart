@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:noor_moden/constants.dart';
 import 'package:noor_moden/controllers/sub_menu_controller.dart';
+import 'package:noor_moden/view/login/login.dart';
 import 'package:noor_moden/view/product_details/product_details_screen.dart';
 import 'package:noor_moden/view/tabs/big_size/bigsize.dart';
 import 'package:noor_moden/view/tabs/cooktail_dress/cooktail_dress.dart';
@@ -14,6 +15,7 @@ import 'package:noor_moden/widgets/commons/custome_drawer.dart';
 import '../../widgets/commons/contact_us.dart';
 import '../../widgets/commons/top_menu.dart';
 import '../../widgets/homewidgets/instagram_contact.dart';
+import '../homescreen/home_screen.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   const ProductDetailsPage({Key? key}) : super(key: key);
@@ -26,7 +28,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage>
     with SingleTickerProviderStateMixin {
   var detailsPageController = Get.put(SubMenuController());
   bool isCategHover = false;
+  var endDrawerController = Get.put(SubMenuController());
   String? selectedValue;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   bool showProductDetailPage = false;
   List<String> items = [
     'Item1',
@@ -40,7 +44,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage>
   void initState() {
     // TODO: implement initState
     setState(() {
-      hideHome=false;
+      hideHome = false;
     });
     super.initState();
 
@@ -49,11 +53,22 @@ class _ProductDetailsPageState extends State<ProductDetailsPage>
 
   @override
   Widget build(BuildContext context) {
-
-
     var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      key: scaffoldKey,
+      endDrawer: Obx(() {
+        return endDrawerController.endDrawerId.value == 0
+            ? Container(
+                width: 310,
+                height: MediaQuery.of(context).size.height,
+                child: LoginPage())
+            : Container(
+                width: 260,
+                height: 700,
+                color: Colors.amber,
+              );
+      }),
       drawer: CustomDrawer(
         controller: _tabController,
         ontap: () {
@@ -78,7 +93,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage>
                       margin: EdgeInsets.only(bottom: 20.0),
                       padding: EdgeInsets.symmetric(horizontal: 20.0),
                       height: 45,
-                      child: TopMenu())
+                      child: TopMenu(
+                        scaffoldKey: scaffoldKey,
+                      ))
                   : Offstage(),
               width > 800
                   ? InkWell(
@@ -87,6 +104,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage>
                           detailsPageController.show();
                           hideHome = false;
                         });
+                        Get.to(HomeScreen());
                       },
                       child: Image.asset(
                         "assets/logo.png",
@@ -213,31 +231,44 @@ class _ProductDetailsPageState extends State<ProductDetailsPage>
                       )
                     : Offstage(),
               ),
-              Obx((){
-              return  detailsPageController.hideHome.value?
-              Container(
-              // height: MediaQuery.of(context).size.height*0.8,
-              height: width > 800 ? 1010 : 1250,
-              child: TabBarView(controller: _tabController, children: [
-              Center(
-              child: NewArrivals(),
-              ),
-              Container(
-              child: EveningDresses(),
-              ),
-              Container(child: CooktailDresses()),
-              Container(child: WeddingDresses()),
-              Container(child: BigSize()),
-              Container(
-              child: Center(
-              child: Text("accessoris will disply here"),
-              ),
-              ),
-              Container(child: Sals()),
-    ]),
-    )
-        : ProductDetailsWidget();
-    }),
+              Obx(() {
+                return detailsPageController.hideHome.value
+                    ? Container(
+                        // height: MediaQuery.of(context).size.height*0.8,
+                        height: width > 800 ? 1400 : 1300,
+                        child:
+                            TabBarView(controller: _tabController, children: [
+                          NewArrivals(
+                            controller: _tabController,
+                          ),
+                          EveningDresses(
+                            controller: _tabController,
+                          ),
+                          Center(
+                              child: CooktailDresses(
+                            controller: _tabController,
+                          )),
+                          Container(
+                              child: WeddingDresses(
+                            controller: _tabController,
+                          )),
+                          Container(
+                              child: BigSize(
+                            controller: _tabController,
+                          )),
+                          Container(
+                            child: Center(
+                              child: Text("accessoris will disply here"),
+                            ),
+                          ),
+                          Container(
+                              child: Sals(
+                            controller: _tabController,
+                          )),
+                        ]),
+                      )
+                    : ProductDetailsWidget();
+              }),
               // hideHome
               //     ? Container(
               //         // height: MediaQuery.of(context).size.height*0.8,
