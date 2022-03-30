@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:noor_moden/controllers/sub_menu_controller.dart';
+import 'package:noor_moden/view/cart_screen/cart_screen.dart';
 import 'package:noor_moden/view/login/login.dart';
 import 'package:noor_moden/view/signup/signup.dart';
 
@@ -97,7 +98,8 @@ class TopMenu extends StatelessWidget {
           InkWell(
             onTap: () {
               endDrawerController.changeEndDrawer(1);
-              scaffoldKey.currentState!.openEndDrawer();
+              Get.to(CartScreen());
+              // scaffoldKey.currentState!.openEndDrawer();
             },
             child: Icon(
               Icons.shopping_bag_outlined,
