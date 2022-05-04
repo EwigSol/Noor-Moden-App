@@ -2,17 +2,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:noor_moden/helper/scroll_behaviour.dart';
-import 'package:noor_moden/router.dart';
 import 'package:noor_moden/view/homescreen/home_screen.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:noor_moden/view/product_details/product_details_screen.dart';
 import 'package:noor_moden/view/product_details/product_detals_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     // Replace with actual values
-    options: FirebaseOptions(
+    options: const FirebaseOptions(
       apiKey: "AIzaSyAKaqqDweG4eHLk9fSEyqxiIdDp-7bD980",
       appId: "1:555903024095:web:297baaf67d1f2c96f2626a",
       messagingSenderId: "555903024095",
@@ -34,21 +31,21 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
       initialRoute: "/home",
       routes: {
-        "/home": (context) => HomeScreen(),
-        "/details": (context) => ProductDetailsPage(),
+        "/home": (context) => const HomeScreen(),
+        "/details": (context) => const ProductDetailsPage(),
       },
       debugShowCheckedModeBanner: false,
       scrollBehavior: MyCustomScrollBehavior(),
       theme: ThemeData(
-          primaryColor: Color(0xffCBAE71),
+          primaryColor: const Color(0xffCBAE71),
           textTheme: TextTheme(
             headline1: TextStyle(
                 fontSize: 21,
                 fontWeight: FontWeight.w800,
                 color: Colors.grey.shade900),
-            headline2: TextStyle(
+            headline2: const TextStyle(
                 fontSize: 15, fontWeight: FontWeight.w700, color: Colors.black),
-            headline3: TextStyle(
+            headline3: const TextStyle(
               fontSize: 16,
             ),
             headline4: TextStyle(
@@ -56,7 +53,7 @@ class _MyAppState extends State<MyApp> {
               color: Colors.grey.shade600,
             ),
           )),
-      home: HomeScreen(),
+      home: const HomeScreen(),
     );
   }
 }
