@@ -16,8 +16,8 @@ class _SubMenuState extends State<SubMenu> {
  bool showOptions=false;
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    var activeColor = Theme.of(context).primaryColor;
+    var width=MediaQuery.of(context).size.width;
+    var activeColor=Theme.of(context).primaryColor;
     return Container(
       padding: EdgeInsets.symmetric(horizontal: width>1200?100:50),
       child: Obx((){

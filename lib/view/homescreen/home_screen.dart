@@ -5,6 +5,7 @@ import 'package:noor_moden/constants.dart';
 import 'package:noor_moden/controllers/images_controller.dart';
 import 'package:noor_moden/helper/on_hover_affect.dart';
 import 'package:noor_moden/view/login/login.dart';
+import 'package:noor_moden/view/signup/signup.dart';
 import 'package:noor_moden/view/tabs/big_size/digsize.dart';
 import 'package:noor_moden/view/tabs/cooktail_dress/cooktail_dress.dart';
 import 'package:noor_moden/view/tabs/eveningDress/EveningDress.dart';
@@ -66,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen>
           });
         },
       ),
-      endDrawer: const LoginPage(),
+      endDrawer: LoginPage(),
       appBar: width > 800
           ? PreferredSize(child: Container(), preferredSize: Size(0, 0))
           : PreferredSize(
