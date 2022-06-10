@@ -7,14 +7,17 @@ class Featured extends StatefulWidget {
   final String title;
   final double height;
 
-
-  Featured({Key? key,required this.imagePath,required this.title, required this.height}) : super(key: key);
+  Featured(
+      {Key? key,
+      required this.imagePath,
+      required this.title,
+      required this.height})
+      : super(key: key);
   @override
   State<Featured> createState() => _FeaturedState();
 }
 
 class _FeaturedState extends State<Featured> {
-
   bool ishover = false;
   @override
   Widget build(BuildContext context) {
@@ -37,20 +40,21 @@ class _FeaturedState extends State<Featured> {
               isDrawer: false,
               val: 0.0,
               isProduct: false,
-              duraton: Duration(milliseconds: 1400),
+              duraton: const Duration(milliseconds: 1400),
               builder: (hover) {
                 return Container(
-                  height:height*0.75,
+                  height: height * 0.75,
                   width: double.infinity,
-                  padding: EdgeInsets.only(left: 10.0),
+                  padding: const EdgeInsets.only(left: 10.0),
                   alignment: Alignment.center,
                   // margin: EdgeInsets.all(hover ? height*0.03 : height*0.06),
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.brown, width: 3.0),
                   ),
-                  child:Align(
+                  child: Align(
                     alignment: Alignment.center,
-                    child: Image.asset(widget.imagePath,
+                    child: Image.network(
+                      widget.imagePath,
                       fit: BoxFit.cover,
                       // height: height*0.75,
                       // width: hover ? 280 : 230
@@ -59,14 +63,16 @@ class _FeaturedState extends State<Featured> {
                 );
               }),
         ),
-        SizedBox(height: height*0.03,),
+        SizedBox(
+          height: height * 0.03,
+        ),
         Container(
-          height: height*0.15,
+          height: height * 0.15,
           child: Text(
             widget.title,
             style: Theme.of(context).textTheme.headline1,
           ),
-        ) ,
+        ),
       ],
     );
   }

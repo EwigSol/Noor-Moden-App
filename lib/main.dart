@@ -8,17 +8,12 @@ import 'package:noor_moden/view/login/login.dart';
 import 'package:noor_moden/view/signup/signup.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+import 'firebase_options.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    // Replace with actual values
-    options: FirebaseOptions(
-      apiKey: "AIzaSyAKaqqDweG4eHLk9fSEyqxiIdDp-7bD980",
-      appId: "1:555903024095:web:297baaf67d1f2c96f2626a",
-      messagingSenderId: "555903024095",
-      projectId: "noor-moden-77c6d",
-    ),
-  );
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(MyApp());
 }
 
@@ -33,6 +28,7 @@ class MyApp extends StatelessWidget {
     // super.initState();
     _auth = FirebaseAuth.instance;
     _user = _auth.currentUser!;
+
     isLoading = false;
   }
 

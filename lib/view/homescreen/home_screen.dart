@@ -2,9 +2,9 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:noor_moden/constants.dart';
+import 'package:noor_moden/controllers/images_controller.dart';
 import 'package:noor_moden/helper/on_hover_affect.dart';
 import 'package:noor_moden/view/login/login.dart';
-import 'package:noor_moden/view/signup/signup.dart';
 import 'package:noor_moden/view/tabs/big_size/digsize.dart';
 import 'package:noor_moden/view/tabs/cooktail_dress/cooktail_dress.dart';
 import 'package:noor_moden/view/tabs/eveningDress/EveningDress.dart';
@@ -23,7 +23,7 @@ import '../../widgets/homewidgets/slider.dart';
 import 'subscreens/newest_arrivels.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -31,6 +31,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
+  final imageController = Get.put(ImagesController());
   bool isCategHover = false;
   String? selectedValue;
   List<String> items = [
@@ -41,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen>
   ];
   late TabController _tabController;
   bool hideHome = false;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -49,6 +51,7 @@ class _HomeScreenState extends State<HomeScreen>
   }
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -63,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen>
           });
         },
       ),
-      endDrawer: LoginPage(),
+      endDrawer: const LoginPage(),
       appBar: width > 800
           ? PreferredSize(child: Container(), preferredSize: Size(0, 0))
           : PreferredSize(
@@ -237,9 +240,20 @@ class _HomeScreenState extends State<HomeScreen>
                     )
                   : Column(
                       children: [
-                        Container(
-                          margin: EdgeInsets.only(top: 20.0),
-                          child: CustomSlider(),
+                        Obx(
+                          () => imageController.isDataLoading.value == true
+                              ? Container(
+                                  child: const Center(
+                                    child: CircularProgressIndicator(
+                                      color: Colors.amberAccent,
+                                    ),
+                                  ),
+                                )
+                              : Container(
+                                  margin: EdgeInsets.only(top: 20.0),
+                                  child: CustomSlider(
+                                      imageController.bannerImagesList),
+                                ),
                         ),
                         Container(
                           margin: EdgeInsets.only(top: 20.0),
@@ -299,12 +313,25 @@ class _HomeScreenState extends State<HomeScreen>
                         SizedBox(
                           height: 20.0,
                         ),
-                        Container(
-                            child: NewestArrivals(
-                          type: "newest",
-                          imageUrl: "dummy url",
-                          title: "OUR NEWEST ARRIVALS",
-                        )),
+                        Obx(
+                              () => imageController.isDataLoading.value == true
+                              ? const SizedBox(
+                                height: 100,
+                            child: Center(
+                              child: CircularProgressIndicator(
+                                color: Colors.amberAccent,
+                              ),
+                            ),
+                          )
+                              :  Container(
+                                  child: NewestArrivals(
+                                    type: "newest",
+                                    imageUrl: "dummy url",
+                                    title: "OUR NEWEST ARRIVALS",
+                                    imageModel: imageController.newArrivalImagesList,
+                                  ))
+                        ),
+
                         SizedBox(
                           height: 15.0,
                         ),
@@ -353,32 +380,47 @@ class _HomeScreenState extends State<HomeScreen>
                                 padding: EdgeInsets.symmetric(
                                     horizontal: width * 0.03),
                                 alignment: Alignment.center,
-                                child: GridView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: Images.length,
-                                  itemBuilder: (context, index) {
-                                    return Container(
-                                      margin: EdgeInsets.symmetric(
-                                          horizontal: 10.0),
-                                      width: width * 0.30,
-                                      child: Featured(
-                                        title: titles[index],
-                                        imagePath: Images[index],
-                                        height: width > 1200
-                                            ? 330
-                                            : width > 800
-                                                ? 210
-                                                : 170,
+                                child:   Obx(
+                                        () => imageController.isDataLoading.value == true
+                                        ? const SizedBox(
+                                      height: 100,
+                                      child: Center(
+                                        child: CircularProgressIndicator(
+                                          color: Colors.amberAccent,
+                                        ),
                                       ),
-                                    );
-                                  },
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                          crossAxisCount: 1,
-                                          mainAxisExtent: width > 800
-                                              ? width * 0.3
-                                              : width * 0.29),
+                                    )
+                                        :  GridView.builder(
+                                          scrollDirection: Axis.horizontal,
+                                          itemCount: imageController.feautreImagesList.length,
+                                          itemBuilder: (context, index) {
+                                            return Container(
+                                              margin: EdgeInsets.symmetric(
+                                                  horizontal: 10.0),
+                                              width: width * 0.30,
+                                              child: Featured(
+                                                title: imageController.feautreImagesList[index].title!,
+                                                imagePath: imageController.feautreImagesList[index].bgImage!,
+                                                height: width > 1200
+                                                    ? 330
+                                                    : width > 800
+                                                    ? 210
+                                                    : 170,
+                                              ),
+                                            );
+                                          },
+                                          gridDelegate:
+                                          SliverGridDelegateWithFixedCrossAxisCount(
+                                              crossAxisCount: 1,
+                                              mainAxisExtent: width > 800
+                                                  ? width * 0.3
+                                                  : width * 0.29),
+                                        )
                                 ),
+
+
+
+
                               ),
                             ],
                           ),

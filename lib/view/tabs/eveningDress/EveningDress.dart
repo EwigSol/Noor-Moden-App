@@ -16,8 +16,15 @@ class _EveningDressesState extends State<EveningDresses> {
       child: Column(
         children: [
           TopContainer(title: "EVENINGDRESSES"),
-          SizedBox(height: 30,),
-          TypeProducts(title: "evening dresses", type: "evening",isShowBanner: false,itemCount: 8,)
+          SizedBox(
+            height: 30,
+          ),
+          TypeProducts(
+            title: "evening dresses",
+            type: "evening",
+            isShowBanner: false,
+            itemCount: 8,
+          )
         ],
       ),
     );

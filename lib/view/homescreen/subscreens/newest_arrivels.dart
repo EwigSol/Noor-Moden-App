@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../../../models/Images_Model.dart';
+
 class NewestArrivals extends StatefulWidget {
   final String title;
   final String imageUrl;
   final String type;
-  const NewestArrivals({Key? key,required this.title,required this.type,required this.imageUrl}) : super(key: key);
+  List<ImagesModel> imageModel;
+   NewestArrivals({Key? key,required this.title,required this.type,required this.imageUrl,required this.imageModel}) : super(key: key);
 
   @override
   _NewestArrivalsState createState() => _NewestArrivalsState();
@@ -12,13 +15,13 @@ class NewestArrivals extends StatefulWidget {
 
 class _NewestArrivalsState extends State<NewestArrivals> {
 
-  List<String> images=[
+  /*List<String> images=[
     "assets/dress1.jpg",
 
     "assets/dress2.jpg",
 
     "assets/dress1.jpg",
-  ];
+  ];*/
   @override
   Widget build(BuildContext context) {
     var width=MediaQuery.of(context).size.width;
@@ -48,7 +51,7 @@ class _NewestArrivalsState extends State<NewestArrivals> {
             width: double.infinity,
             child: GridView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 3,
+              itemCount: widget.imageModel.length ,
               itemBuilder: (context,index){
 
 
@@ -68,7 +71,7 @@ class _NewestArrivalsState extends State<NewestArrivals> {
                           children: [
                             Align(
                               alignment: Alignment.center,
-                              child:Image.asset(images[index],
+                              child:Image.network(widget.imageModel[index].bgImage!,
                                 height:double.infinity,
                                 fit: BoxFit.cover,
                                 width: double.infinity,

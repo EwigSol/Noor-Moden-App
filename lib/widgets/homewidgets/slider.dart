@@ -1,79 +1,84 @@
-import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-final List<String> imgList = [
-  "assets/model1.jpg",
-  "assets/model2.jpg",
-  "assets/model3.jpg",
-  "assets/model4.jpg",
-  "assets/model5.jpg",
-  ];
-class CustomSlider extends StatelessWidget {
-   CustomSlider({Key? key}) : super(key: key);
-   final List<Widget> imageSliders = imgList
-       .map((item) => Container(
-         // margin: EdgeInsets.all(5.0),
-         child: ClipRRect(
-             child: Stack(
-               children: <Widget>[
-                 Image.asset(item, fit: BoxFit.cover, width: double.infinity,height: 520,),
-                 Positioned(
-                   bottom: 0.0,
-                   left: 0.0,
-                   right: 0.0,
-                   child: Container(
-                     decoration: const BoxDecoration(
-                       gradient: LinearGradient(
-                         colors: [
-                           Color.fromARGB(200, 0, 0, 0),
-                           Color.fromARGB(0, 0, 0, 0)
-                         ],
-                         begin: Alignment.bottomCenter,
-                         end: Alignment.topCenter,
-                       ),
-                     ),
-                     padding: const  EdgeInsets.symmetric(
-                         vertical: 10.0,horizontal: 20),
-                     child: Text(
-                       'No. ${imgList.indexOf(item)} image',
-                       style:const  TextStyle(
-                         color: Colors.white,
-                         fontSize: 20.0,
-                         fontWeight: FontWeight.bold,
-                       ),
-                     ),
-                   ),
-                 ),
-               ],
-             )),
-       ))
-       .toList();
+import 'package:noor_moden/models/Images_Model.dart';
+
+class CustomSlider extends StatefulWidget {
+  final List<ImagesModel> bannerImagesList;
+  const CustomSlider(
+    this.bannerImagesList,
+  );
+
+  @override
+  _CustomSliderState createState() => _CustomSliderState();
+}
+
+class _CustomSliderState extends State<CustomSlider> {
+  final CarouselController _controller = CarouselController();
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 500,
-child: CarouselSlider(
-  options: CarouselOptions(
-    autoPlay: true,
-    enlargeCenterPage: true,
-
-    height: 500,
-    aspectRatio: 2.0,
-
-    viewportFraction: 0.999,
-    initialPage: 0,
-    disableCenter: true,
-    enableInfiniteScroll: true,
-    reverse: false,
-    autoPlayInterval: Duration(seconds: 2),
-    autoPlayAnimationDuration: Duration(milliseconds: 700),
-    autoPlayCurve: Curves.fastOutSlowIn,
-    // onPageChanged: callbackFunction,
-    scrollDirection: Axis.horizontal,
-
-  ),
-  items: imageSliders,
-),
+      child: CarouselSlider(
+        items: widget.bannerImagesList
+            .map(
+              (item) => Container(
+                  margin: const EdgeInsets.all(5.0),
+                  child: ClipRRect(
+                      child: Stack(
+                    children: <Widget>[
+                      Image.network(item.bgImage!,
+                          fit: BoxFit.cover, width: double.infinity,
+                          loadingBuilder: (BuildContext context, Widget child,
+                              ImageChunkEvent? loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return Center(
+                            child: CircularProgressIndicator(
+                          value: loadingProgress.expectedTotalBytes != null
+                              ? loadingProgress.cumulativeBytesLoaded /
+                                  loadingProgress.expectedTotalBytes!
+                              : null,
+                        ));
+                      }),
+                      Positioned(
+                        bottom: 0.0,
+                        left: 0.0,
+                        right: 0.0,
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Color.fromARGB(200, 0, 0, 0),
+                                Color.fromARGB(0, 0, 0, 0)
+                              ],
+                              begin: Alignment.bottomCenter,
+                              end: Alignment.topCenter,
+                            ),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10.0, horizontal: 20),
+                          child: Text(
+                            item.title!,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ))),
+            )
+            .toList(),
+        options: CarouselOptions(
+          autoPlay: true,
+          enlargeCenterPage: true,
+          enlargeStrategy: CenterPageEnlargeStrategy.height,
+           height: 500,
+        ),
+        carouselController: _controller,
+      ),
     );
   }
 }

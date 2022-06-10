@@ -13,13 +13,20 @@ class _NewArrivalsState extends State<NewArrivals> {
   @override
   Widget build(BuildContext context) {
     return Container(
-           child: Column(
-             children: [
-               TopContainer(title: "NEWARRIVALS"),
-               SizedBox(height: 30,),
-               TypeProducts(title: "NEW ARRIVALS", type: "new",isShowBanner: false,itemCount: 8,)
-             ],
-           ),
+      child: Column(
+        children: [
+          TopContainer(title: "NEWARRIVALS"),
+          SizedBox(
+            height: 30,
+          ),
+          TypeProducts(
+            title: "NEW ARRIVALS",
+            type: "new",
+            isShowBanner: false,
+            itemCount: 8,
+          )
+        ],
+      ),
     );
   }
 }
